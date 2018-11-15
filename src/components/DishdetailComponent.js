@@ -1,54 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 
-class DishDetail extends Component {
+function RenderDish({dish}) {
+    if(dish != null){
+        return (
+            <div className = 'col-12 col-md-5 m-1'>
+                <Card>
+                    <CardImg width="100%" src={dish.image} alt={dish.name}/>
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            </div>
+        );
+    }
+}
 
-    // function for rendering dish as as view in our page
-    renderDish(dish) {
-        if (dish != null) {
-            const comment = dish.comments.map((comment) => {
+function RenderComments({comments}) {
+    if(comments != null) {
+        return (
+            comments.map((comment) => {
                 return (
                     <div key = {comment.id}>
                         <p>{comment.comment}</p>
                         <p>{`-- ${comment.author} , ${new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}`}</p>
                     </div>
-                );
-            });
-            return (
-                <div className = 'row'>
-					<div className = 'col-12 col-md-5 m-1'>
-						<Card>
-							<CardImg width="100%" src={dish.image} alt={dish.name}/>
-							<CardBody>
-								<CardTitle>{dish.name}</CardTitle>
-								<CardText>{dish.description}</CardText>
-							</CardBody>
-						</Card>
-					</div>
-					<div className = 'col-12 col-md-5 m-1'>
-					    <h4>Comments</h4>
-                        {comment}			
-					</div>
-				</div>
-            );
-        }
-        else {
-            return (
-                <div></div>
-            );
-        }
-    }
+                )
+            })
+        )
+    } 
+}
 
-    // render the renderDish Function to web page
-    render () {
-        return (
-            <div className="container">
-                {this.renderDish(this.props.selectedDish)}
-                <br/>
+const DishDetail = (props) => {
+    const dish = props.selectedDish;
+    if(dish === null || dish === undefined) return (<div></div>);
+    return (
+        <div className="container">
+            <div className = 'row'>
+                <RenderDish dish={dish} />
+                
+                <div className = 'col-12 col-md-5 m-1'>
+                    <h4>Comments</h4>
+                    <RenderComments comments={dish.comments} />
+                </div>
             </div>
-        );
-    }
+            <br/>
+        </div>
+    );
 }
 
 export default DishDetail;
