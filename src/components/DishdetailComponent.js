@@ -11,7 +11,7 @@ class DishDetail extends Component {
                 return (
                     <div key = {comment.id}>
                         <p>{comment.comment}</p>
-                        <p>{`-- ${comment.author} , ${comment.date}`}</p>
+                        <p>{`-- ${comment.author} , ${new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}`}</p>
                     </div>
                 );
             });
@@ -42,10 +42,9 @@ class DishDetail extends Component {
 
     // render the renderDish Function to web page
     render () {
-        const dish = this.props.selectedDish;
         return (
-            <div>
-                {this.renderDish(dish)}
+            <div className="container">
+                {this.renderDish(this.props.selectedDish)}
                 <br/>
             </div>
         );
