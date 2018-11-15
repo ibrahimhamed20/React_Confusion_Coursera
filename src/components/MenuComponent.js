@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
-import DishDetail from './DishdetailComponent';
 
 
 
 class Menu extends Component {
-
-    // constructor of props that contain states of components data
-    // constructor(props) {
-    //     super(props);
-    // }
 
     // render function for map the data of dishes array to display as cards
     render() {
@@ -31,9 +25,6 @@ class Menu extends Component {
             <div className="container">
                 <div className="row">
                     {menu}
-                </div>
-                <div className="row">
-                    <DishDetail />
                 </div>
             </div>
         );
