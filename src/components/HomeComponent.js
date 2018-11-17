@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
+import { Card, CardImg, CardText, CardTitle, CardSubtitle} from 'reactstrap';
 
 function RenderCard({item}) {
     return (
-        <Card>
+        <Card className="p-2">
             <CardImg src={item.image} alt={item.name} />
             <CardTitle>{item.name}</CardTitle>
             {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null}
