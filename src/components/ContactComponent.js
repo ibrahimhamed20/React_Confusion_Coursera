@@ -13,6 +13,7 @@ class Contact extends Component {
             agree: false,
             contactType: 'Tel.',
             message: '',
+            //set inputs to false in value
             touched: {
                 firstname: false,
                 lastname: false,
@@ -22,12 +23,19 @@ class Contact extends Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
+    // function to handle the change in input fields
     handleInputChange(event) {
+        // set target to target of event
         const target = event.target;
+        // set value and if target type is checkbox set it to checked. else to value..
         const value = target.type === 'checkbox' ? target.checked : target.value;
+        // set name to target name
         const name = target.name;
+
+        //change to state based on name of target and value of target
         this.setState({
             [name]: value
         });
