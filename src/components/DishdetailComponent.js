@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem,
     Button, Modal, ModalHeader, ModalBody, ModalFooter,
     Row, Col, Label } from 'reactstrap';
@@ -78,7 +78,7 @@ const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
 
-class CommentForm  extends React.Component {
+class CommentForm  extends Component {
     constructor(props) {
         super(props);
         this.state = {
